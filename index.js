@@ -395,7 +395,7 @@ async function main() {
     else { opts._posArgs = opts._posArgs || []; opts._posArgs.push(arg); }
   }
 
-  if (!API_KEY && cmd !== 'init' && cmd !== 'list' && cmd !== 'show' && cmd !== 'help' && cmd !== 'new' && cmd !== 'rm' && cmd !== 'log') {
+  if (!API_KEY && cmd !== 'init' && cmd !== 'list' && cmd !== 'show' && cmd !== 'help' && cmd !== 'new' && cmd !== 'rm' && cmd !== 'log' && cmd !== 'preview') {
     console.error('❌ No API key. Set AI_ANNOTATOR_API_KEY or OPENAI_API_KEY.');
     process.exit(1);
   }

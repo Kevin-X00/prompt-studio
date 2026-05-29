@@ -1,5 +1,5 @@
 {
-  "name": "prompt-studio",
+  "name": "@Kevin-X00/prompt-studio",
   "version": "1.0.0",
   "description": "Local prompt manager for AI devs — template, version, compare, and test prompts across models. CLI + local web UI.",
   "main": "index.js",
@@ -9,5 +9,6 @@
   "keywords": ["prompt", "prompt-manager", "llm", "ai", "template", "claude", "gpt", "prompt-engineering"],
   "author": "Kevin-X00",
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/Kevin-X00/prompt-studio.git" }
+  "publishConfig": { "access": "public" },
+  "repository": { "type": "git", "url": "git+ssh://git@github.com:Kevin-X00/prompt-studio.git" }
 }
