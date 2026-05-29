@@ -1,5 +1,5 @@
 {
-  "name": "@Kevin-X00/prompt-studio",
+  "name": "@kevinxyz/prompt-studio",
   "version": "1.0.0",
   "description": "Local prompt manager for AI devs — template, version, compare, and test prompts across models. CLI + local web UI.",
   "main": "index.js",
