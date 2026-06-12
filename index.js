@@ -417,11 +417,6 @@ async function main() {
     else { opts._posArgs = opts._posArgs || []; opts._posArgs.push(arg); }
   }
 
-  if (!API_KEY && cmd !== 'init' && cmd !== 'list' && cmd !== 'show' && cmd !== 'help' && cmd !== 'new' && cmd !== 'rm' && cmd !== 'log' && cmd !== 'preview' && cmd !== 'update') {
-    console.error('❌ No API key. Set AI_ANNOTATOR_API_KEY or OPENAI_API_KEY.');
-    process.exit(1);
-  }
-
   switch (cmd) {
     case 'init':
       initPrompts();
@@ -445,10 +440,12 @@ async function main() {
       else console.error('Usage: prompt rm <name>');
       break;
     case 'run':
+      if (!API_KEY) { console.error('❌ No API key. Set AI_ANNOTATOR_API_KEY or OPENAI_API_KEY.'); process.exit(1); }
       if (opts._posArgs?.[0]) await runPrompt(opts._posArgs[0], opts);
       else console.error('Usage: prompt run <name> [--var key=val]');
       break;
     case 'compare':
+      if (!API_KEY) { console.error('❌ No API key. Set AI_ANNOTATOR_API_KEY or OPENAI_API_KEY.'); process.exit(1); }
       if (opts._posArgs?.[0]) await comparePrompts(opts._posArgs[0], opts);
       else console.error('Usage: prompt compare <name> [--models gpt-4o,claude-3]');
       break;
