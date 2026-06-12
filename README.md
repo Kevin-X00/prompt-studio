@@ -29,6 +29,10 @@ prompt init
 # List all prompts
 prompt list
 
+# Set your API key first
+# You can also set OPENAI_API_KEY instead
+export AI_ANNOTATOR_API_KEY="sk-your-key-here"
+
 # Run a prompt
 prompt run greeting --var name=World
 
@@ -80,13 +84,33 @@ Variables use `{{double_curly_braces}}` syntax. Set them with `--var key=value`.
 --models <list>      For compare: comma-separated model list
 ```
 
-## Environment Variables
+## Environment Variables (Required)
 
+You must set an API key before running any prompt:
+
+| Variable | Description |
+|----------|-------------|
+| `AI_ANNOTATOR_API_KEY` | **OpenAI API key** (recommended, overrides `OPENAI_API_KEY`) |
+| `OPENAI_API_KEY` | Fallback API key |
+
+**Quick setup** (choose one):
+```bash
+# Set directly (replace with your real key)
+export AI_ANNOTATOR_API_KEY="sk-..."
+
+# Or add to ~/.zshrc to persist
+# echo 'export AI_ANNOTATOR_API_KEY="sk-..."' >> ~/.zshrc
+
+# Or use .env in your project
+echo 'AI_ANNOTATOR_API_KEY=sk-...' > .env
+```
+
+Optional:
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `AI_ANNOTATOR_API_KEY` | — | API key (overrides OPENAI_API_KEY) |
-| `OPENAI_API_KEY` | — | Fallback API key |
 | `PROMPT_STUDIO_MODEL` | `gpt-4o-mini` | Default model |
+
+> 💡 **Get an API key**: Sign up at [platform.openai.com/api-keys](https://platform.openai.com/api-keys) to get a free trial key.
 
 ## Example Workflow
 
