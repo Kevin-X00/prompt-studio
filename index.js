@@ -16,6 +16,7 @@
 
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
+import { execSync } from 'node:child_process';
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -44,6 +45,7 @@ Usage:
   prompt preview <name>                  Preview resolved prompt (dry-run)
   prompt log                             Show recent run history
   prompt rm <name>                       Delete a prompt
+  prompt update                          Check for updates and upgrade
   prompt --help
 
 Environment Variables:
@@ -353,6 +355,26 @@ async function comparePrompts(name, opts) {
   }
 }
 
+function checkUpdate() {
+  console.log('Checking for updates...\n');
+  try {
+    const pkgPath = new URL('./package.json', import.meta.url).pathname;
+    const current = JSON.parse(fs.readFileSync(pkgPath, 'utf-8')).version;
+    const latest = execSync('npm view @kevinxyz/prompt-studio version 2>/dev/null', { encoding: 'utf-8' }).trim();
+    if (latest && latest !== current) {
+      console.log(`📦 Update available: v${current} → v${latest}`);
+      console.log('Running: npm install -g @kevinxyz/prompt-studio@latest\n');
+      execSync('npm install -g @kevinxyz/prompt-studio@latest', { stdio: 'inherit' });
+      console.log('\n✅ Updated to v' + latest);
+    } else {
+      console.log('✅ You are on the latest version (v' + current + ')');
+    }
+  } catch (e) {
+    console.error('Update failed:', e.message);
+    console.log('Try manually: npm install -g @kevinxyz/prompt-studio@latest');
+  }
+}
+
 function showLog() {
   const lf = logPath();
   if (!fs.existsSync(lf)) { console.log('No run history yet.'); return; }
@@ -395,7 +417,7 @@ async function main() {
     else { opts._posArgs = opts._posArgs || []; opts._posArgs.push(arg); }
   }
 
-  if (!API_KEY && cmd !== 'init' && cmd !== 'list' && cmd !== 'show' && cmd !== 'help' && cmd !== 'new' && cmd !== 'rm' && cmd !== 'log' && cmd !== 'preview') {
+  if (!API_KEY && cmd !== 'init' && cmd !== 'list' && cmd !== 'show' && cmd !== 'help' && cmd !== 'new' && cmd !== 'rm' && cmd !== 'log' && cmd !== 'preview' && cmd !== 'update') {
     console.error('❌ No API key. Set AI_ANNOTATOR_API_KEY or OPENAI_API_KEY.');
     process.exit(1);
   }
@@ -438,6 +460,10 @@ async function main() {
     case 'log':
     case 'history':
       showLog();
+      break;
+    case 'update':
+    case 'upgrade':
+      checkUpdate();
       break;
     default:
       console.error('Unknown command:', cmd);

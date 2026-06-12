@@ -70,6 +70,7 @@ Variables use `{{double_curly_braces}}` syntax. Set them with `--var key=value`.
 | `prompt compare <name>` | Run on multiple models side by side |
 | `prompt preview <name>` | Show resolved template (no API call) |
 | `prompt log` | View recent run history |
+| `prompt update` | Check for updates and upgrade to latest version |
 | `prompt rm <name>` | Delete a prompt |
 
 ## Options
