@@ -5,7 +5,7 @@
 Create, version, test, and compare prompts across LLMs — right from your terminal.
 
 ```bash
-npm install -g prompt-studio
+npm install -g @kevinxyz/prompt-studio
 prompt init
 prompt run greeting --var name=World
 prompt compare code-review --models gpt-4o-mini,gpt-4o,claude-3-haiku
@@ -93,6 +93,7 @@ Variables use `{{double_curly_braces}}` syntax. Set them with `--var key=value`.
 ```bash
 # 1. Set up
 cd my-project
+npm install @kevinxyz/prompt-studio
 prompt init
 
 # 2. Create a prompt for code review
