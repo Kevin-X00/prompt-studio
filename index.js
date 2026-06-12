@@ -46,6 +46,7 @@ Usage:
   prompt log                             Show recent run history
   prompt rm <name>                       Delete a prompt
   prompt update                          Check for updates and upgrade
+  prompt ui                              Start local web UI (port 3456)
   prompt --help
 
 Environment Variables:
@@ -461,6 +462,12 @@ async function main() {
     case 'update':
     case 'upgrade':
       checkUpdate();
+      break;
+    case 'ui':
+    case 'server':
+    case 'web':
+    case 'dashboard':
+      import('./server.js').catch(e => { console.error('Failed to start UI:', e.message); });
       break;
     default:
       console.error('Unknown command:', cmd);
