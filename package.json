@@ -1,14 +1,32 @@
 {
   "name": "@kevinxyz/prompt-studio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Local prompt manager for AI devs — template, version, compare, and test prompts across models. CLI + local web UI.",
   "main": "index.js",
-  "bin": { "prompt": "./index.js" },
+  "bin": {
+    "prompt": "./index.js"
+  },
   "type": "module",
-  "scripts": { "test": "node --test" },
-  "keywords": ["prompt", "prompt-manager", "llm", "ai", "template", "claude", "gpt", "prompt-engineering"],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "prompt",
+    "prompt-manager",
+    "llm",
+    "ai",
+    "template",
+    "claude",
+    "gpt",
+    "prompt-engineering"
+  ],
   "author": "Kevin-X00",
   "license": "MIT",
-  "publishConfig": { "access": "public" },
-  "repository": { "type": "git", "url": "git+ssh://git@github.com:Kevin-X00/prompt-studio.git" }
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:Kevin-X00/prompt-studio.git"
+  }
 }
